@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Camera điểm danh Hưng Long</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+
+            font-family: Arial, sans-serif;
+
+            background: #f2f4f7;
+
+            text-align: center;
+        }
+
+        .container {
+            max-width: 500px;
+
+            margin: auto;
+
+            background: white;
+
+            padding: 20px;
+
+            border-radius: 20px;
+
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+            color: #1565c0;
+
+            margin-bottom: 10px;
+        }
+
+        .thongBao {
+            margin: 15px 0;
+
+            font-size: 17px;
+
+            color: #555;
+        }
+
+        .cameraBox {
+            width: 100%;
+
+            background: black;
+
+            border-radius: 15px;
+
+            overflow: hidden;
+
+            position: relative;
+        }
+
+        video {
+            width: 100%;
+
+            display: block;
+
+            transform: scaleX(-1);
+        }
+
+        canvas {
+            display: none;
+        }
+
+        button {
+            width: 100%;
+
+            padding: 15px;
+
+            margin-top: 15px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            color: white;
+
+            background: #1565c0;
+
+            cursor: pointer;
+        }
+
+        button:disabled {
+            background: #999;
+
+            cursor: not-allowed;
+        }
+
+        #btnChup {
+            background: #e53935;
+        }
+
+        #anhChup {
+            width: 100%;
+
+            margin-top: 15px;
+
+            border-radius: 15px;
+
+            display: none;
+        }
+
+        #ketQua {
+            margin-top: 15px;
+
+            font-size: 18px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📋 ĐIỂM DANH HỘI NGHỊ</h1>
+
+    <div class="thongBao" id="thongBao">
+        Đang mở camera...
+    </div>
+
+    <div class="cameraBox">
+
+        <video id="camera"
+               autoplay
+               playsinline>
+        </video>
+
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+    <button id="btnChup" onclick="chupAnh()" disabled>
+        📸 CHỤP ẢNH
+    </button>
+
+    <img id="anhChup">
+
+    <div id="ketQua"></div>
+
+</div>
+
+
+<script>
+
+var camera = document.getElementById("camera");
+
+var canvas = document.getElementById("canvas");
+
+var btnChup = document.getElementById("btnChup");
+
+var thongBao = document.getElementById("thongBao");
+
+var anhChup = document.getElementById("anhChup");
+
+var ketQua = document.getElementById("ketQua");
+
+var stream = null;
+
+
+/*
+    MỞ CAMERA
+*/
+
+async function moCamera() {
+
+    try {
+
+        if (!navigator.mediaDevices ||
+            !navigator.mediaDevices.getUserMedia) {
+
+            throw new Error(
+                "Thiết bị/trình duyệt không hỗ trợ camera"
+            );
+        }
+
+        stream = await navigator.mediaDevices.getUserMedia({
+
+            video: {
+                facingMode: "user"
+            },
+
+            audio: false
+
+        });
+
+        camera.srcObject = stream;
+
+        thongBao.innerHTML =
+            "✅ Camera đã được bật. Hãy nhìn vào camera.";
+
+        btnChup.disabled = false;
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        thongBao.innerHTML =
+            "❌ Không thể truy cập camera.";
+
+        ketQua.innerHTML =
+            "<span style='color:red'>" +
+            error.name +
+            ": " +
+            error.message +
+            "</span>";
+
+    }
+
+}
+
+
+/*
+    CHỤP ẢNH
+*/
+
+function chupAnh() {
+
+    if (!stream) {
+
+        return;
+
+    }
+
+    canvas.width = camera.videoWidth;
+
+    canvas.height = camera.videoHeight;
+
+    var context = canvas.getContext("2d");
+
+    /*
+        Vì video đang lật gương,
+        ảnh chụp cũng lật lại cho đúng.
+    */
+
+    context.translate(canvas.width, 0);
+
+    context.scale(-1, 1);
+
+    context.drawImage(
+        camera,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+    var anhBase64 =
+        canvas.toDataURL(
+            "image/jpeg",
+            0.8
+        );
+
+    anhChup.src = anhBase64;
+
+    anhChup.style.display = "block";
+
+    ketQua.innerHTML =
+        "<span style='color:green'>" +
+        "✅ Đã chụp ảnh thành công!" +
+        "</span>";
+
+}
+
+
+/*
+    TỰ ĐỘNG MỞ CAMERA
+*/
+
+window.onload = function() {
+
+    moCamera();
+
+};
+
+</script>
+
+</body>
+
+</html>
