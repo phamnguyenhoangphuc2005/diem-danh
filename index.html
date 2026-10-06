@@ -6,7 +6,8 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
+<meta
+name="viewport"
 content="width=device-width, initial-scale=1.0">
 
 <title>Điểm danh hội nghị</title>
@@ -14,214 +15,185 @@ content="width=device-width, initial-scale=1.0">
 <style>
 
 * {
-    box-sizing: border-box;
+    box-sizing:border-box;
 }
 
 body {
 
-    margin: 0;
+    margin:0;
 
-    padding: 15px;
+    padding:15px;
 
-    background: #eef3f8;
+    background:#eef3f8;
 
-    font-family: Arial, sans-serif;
-
-    color: #222;
+    font-family:Arial,sans-serif;
 
 }
 
-.container {
+.box {
 
-    width: 100%;
+    width:100%;
 
-    max-width: 650px;
+    max-width:650px;
 
-    margin: auto;
+    margin:auto;
 
-    background: white;
+    background:white;
 
-    border-radius: 20px;
+    border-radius:20px;
 
-    padding: 20px;
+    padding:20px;
 
     box-shadow:
-        0 5px 20px rgba(0,0,0,0.15);
+        0 5px 20px rgba(0,0,0,.15);
 
 }
 
 h1 {
 
-    text-align: center;
+    text-align:center;
 
-    color: #1565c0;
-
-    margin-top: 5px;
+    color:#1565c0;
 
 }
 
-.thongTin {
+#ma {
 
-    text-align: center;
+    text-align:center;
 
-    margin: 15px 0;
+    color:#666;
+
+    margin-bottom:15px;
 
 }
 
-#maDaiBieu {
+#huongDan {
 
-    color: #666;
+    background:#fff3cd;
 
-    font-size: 15px;
+    padding:15px;
+
+    border-radius:10px;
+
+    margin-bottom:15px;
+
+    line-height:1.5;
 
 }
 
 video {
 
-    width: 100%;
+    width:100%;
 
-    max-height: 65vh;
+    border-radius:15px;
 
-    object-fit: cover;
+    background:#111;
 
-    border-radius: 15px;
+    display:block;
 
-    background: #111;
-
-    transform: scaleX(-1);
+    transform:scaleX(-1);
 
 }
 
-#anhPreview {
+#anh {
 
-    width: 100%;
+    width:100%;
 
-    border-radius: 15px;
+    border-radius:15px;
 
-    display: none;
+    display:none;
 
 }
 
 button {
 
-    width: 100%;
+    width:100%;
 
-    padding: 16px;
+    padding:16px;
 
-    margin-top: 12px;
+    margin-top:12px;
 
-    border: none;
+    border:0;
 
-    border-radius: 10px;
+    border-radius:10px;
 
-    font-size: 18px;
+    font-size:18px;
 
-    font-weight: bold;
+    font-weight:bold;
 
-    cursor: pointer;
+}
+
+#btnMo {
+
+    background:#1565c0;
+
+    color:white;
 
 }
 
 #btnChup {
 
-    background: #1565c0;
+    background:#1565c0;
 
-    color: white;
+    color:white;
+
+}
+
+#btnLai {
+
+    background:#777;
+
+    color:white;
+
+    display:none;
 
 }
 
 #btnGui {
 
-    background: #16803c;
+    background:#16803c;
 
-    color: white;
+    color:white;
 
-    display: none;
-
-}
-
-#btnChupLai {
-
-    background: #777;
-
-    color: white;
-
-    display: none;
+    display:none;
 
 }
 
 button:disabled {
 
-    background: #999;
-
-    cursor: not-allowed;
+    background:#999;
 
 }
 
 #trangThai {
 
-    text-align: center;
+    text-align:center;
 
-    font-size: 17px;
+    margin-top:15px;
 
-    line-height: 1.6;
-
-    margin-top: 15px;
+    line-height:1.6;
 
 }
 
-.thanhCong {
+.ok {
 
-    color: #16803c;
+    color:#16803c;
 
-    font-weight: bold;
+    font-weight:bold;
 
 }
 
 .loi {
 
-    color: #d00000;
+    color:#d00000;
 
-    font-weight: bold;
-
-}
-
-.thongBao {
-
-    padding: 12px;
-
-    border-radius: 10px;
-
-    background: #f1f5f9;
-
-    margin-top: 15px;
-
-    text-align: center;
-
-}
-
-.hidden {
-
-    display: none !important;
-
-}
-
-
-/*
-==================================================
-FORM GỬI ẢNH
-==================================================
-*/
-
-#formGuiAnh {
-
-    display: none;
+    font-weight:bold;
 
 }
 
 #khungGui {
 
-    display: none;
+    display:none;
 
 }
 
@@ -229,11 +201,10 @@ FORM GỬI ẢNH
 
 </head>
 
-
 <body>
 
 
-<div class="container">
+<div class="box">
 
 
 <h1>
@@ -241,18 +212,24 @@ FORM GỬI ẢNH
 </h1>
 
 
-<div class="thongTin">
-
-    <div id="maDaiBieu">
-        Mã đại biểu: đang tải...
-    </div>
-
+<div id="ma">
+Đang tải...
 </div>
 
 
-<div class="thongBao">
+<div id="huongDan">
 
-    📷 Camera trước đang được sử dụng
+📱 <b>Nếu dùng điện thoại:</b>
+
+<br>
+
+Nếu đang mở trang này trong Zalo,
+
+hãy bấm mở bằng
+
+<b>Chrome</b>
+
+để sử dụng camera.
 
 </div>
 
@@ -267,28 +244,40 @@ muted>
 </video>
 
 
-<!-- ẢNH ĐÃ CHỤP -->
+<!-- ẢNH -->
 
 <img
-id="anhPreview"
+id="anh"
 alt="Ảnh điểm danh">
+
+
+<!-- NÚT MỞ CAMERA -->
+
+<button
+id="btnMo"
+onclick="moCamera()">
+
+📷 MỞ CAMERA
+
+</button>
 
 
 <!-- NÚT CHỤP -->
 
 <button
 id="btnChup"
-onclick="chupAnh()">
+onclick="chupAnh()"
+style="display:none">
 
 📸 CHỤP ẢNH ĐIỂM DANH
 
 </button>
 
 
-<!-- NÚT CHỤP LẠI -->
+<!-- CHỤP LẠI -->
 
 <button
-id="btnChupLai"
+id="btnLai"
 onclick="chupLai()">
 
 🔄 CHỤP LẠI
@@ -296,7 +285,7 @@ onclick="chupLai()">
 </button>
 
 
-<!-- NÚT GỬI -->
+<!-- GỬI -->
 
 <button
 id="btnGui"
@@ -309,18 +298,17 @@ onclick="guiAnh()">
 
 <div id="trangThai">
 
-⏳ Đang khởi động camera...
+Hãy bấm MỞ CAMERA.
 
 </div>
 
 
-<!-- FORM CROSS ORIGIN -->
+<!-- FORM GỬI -->
 
 <form
-id="formGuiAnh"
+id="formGui"
 method="POST"
-target="khungGui"
->
+target="khungGui">
 
 <input
 type="hidden"
@@ -342,8 +330,7 @@ id="inputAnh">
 
 <iframe
 name="khungGui"
-id="khungGui"
-style="display:none">
+id="khungGui">
 </iframe>
 
 
@@ -355,7 +342,7 @@ style="display:none">
 
 /*
 ==================================================
-CẤU HÌNH
+APPS SCRIPT
 ==================================================
 */
 
@@ -365,7 +352,7 @@ var SCRIPT_URL =
 
 /*
 ==================================================
-LẤY ID + TOKEN
+LẤY ID
 ==================================================
 */
 
@@ -383,16 +370,15 @@ var token =
 params.get("token");
 
 
-document.getElementById(
-"maDaiBieu"
-).innerText =
+document.getElementById("ma")
+.innerText =
 "Mã đại biểu: " +
 (id || "KHÔNG CÓ");
 
 
 /*
 ==================================================
-BIẾN CAMERA
+BIẾN
 ==================================================
 */
 
@@ -400,36 +386,28 @@ var camera =
 document.getElementById("camera");
 
 
-var anhPreview =
-document.getElementById("anhPreview");
+var anh =
+document.getElementById("anh");
+
+
+var btnMo =
+document.getElementById("btnMo");
 
 
 var btnChup =
 document.getElementById("btnChup");
 
 
+var btnLai =
+document.getElementById("btnLai");
+
+
 var btnGui =
 document.getElementById("btnGui");
 
 
-var btnChupLai =
-document.getElementById("btnChupLai");
-
-
 var trangThai =
 document.getElementById("trangThai");
-
-
-var inputId =
-document.getElementById("inputId");
-
-
-var inputToken =
-document.getElementById("inputToken");
-
-
-var inputAnh =
-document.getElementById("inputAnh");
 
 
 var stream =
@@ -446,7 +424,7 @@ false;
 
 /*
 ==================================================
-KIỂM TRA ID + TOKEN
+KIỂM TRA
 ==================================================
 */
 
@@ -457,22 +435,13 @@ if (!id) {
     );
 
 }
+
 else if (!token) {
 
     hienThiLoi(
-        "❌ Không có mã xác thực. Vui lòng quét QR lại!"
+        "❌ Không có mã xác thực. " +
+        "Vui lòng quét QR lại."
     );
-
-}
-else {
-
-    inputId.value =
-        id;
-
-    inputToken.value =
-        token;
-
-    moCamera();
 
 }
 
@@ -487,42 +456,54 @@ async function moCamera() {
 
     try {
 
+        trangThai.innerHTML =
+            "⏳ Đang yêu cầu quyền camera...";
+
+
+        /*
+        ==========================================
+        KIỂM TRA TRÌNH DUYỆT
+        ==========================================
+        */
+
         if (
             !navigator.mediaDevices ||
             !navigator.mediaDevices.getUserMedia
         ) {
 
             throw new Error(
-                "Trình duyệt không hỗ trợ camera."
+                "Trình duyệt này không hỗ trợ camera."
             );
 
         }
 
 
-        trangThai.innerHTML =
-            "📷 Đang yêu cầu quyền camera...";
-
+        /*
+        ==========================================
+        MỞ CAMERA TRƯỚC
+        ==========================================
+        */
 
         stream =
-            await navigator.mediaDevices.getUserMedia({
+            await navigator
+            .mediaDevices
+            .getUserMedia({
 
                 video: {
 
-                    facingMode: {
-                        ideal: "user"
+                    facingMode:"user",
+
+                    width:{
+                        ideal:1280
                     },
 
-                    width: {
-                        ideal: 1280
-                    },
-
-                    height: {
-                        ideal: 720
+                    height:{
+                        ideal:720
                     }
 
                 },
 
-                audio: false
+                audio:false
 
             });
 
@@ -534,37 +515,70 @@ async function moCamera() {
         await camera.play();
 
 
+        /*
+        ==========================================
+        HIỂN THỊ
+        ==========================================
+        */
+
+        btnMo.style.display =
+            "none";
+
+
+        btnChup.style.display =
+            "block";
+
+
         trangThai.innerHTML =
-            "🟢 Camera đã sẵn sàng. " +
-            "Hãy nhìn vào camera rồi bấm CHỤP ẢNH.";
+
+            "<span class='ok'>" +
+
+            "🟢 Camera đã sẵn sàng!" +
+
+            "</span>" +
+
+            "<br>" +
+
+            "Nhìn vào camera rồi bấm CHỤP ẢNH.";
 
 
     }
 
-    catch (error) {
+    catch(error) {
 
         console.error(error);
 
 
         hienThiLoi(
 
-            "❌ Không mở được camera." +
+            "❌ KHÔNG MỞ ĐƯỢC CAMERA" +
 
             "<br><br>" +
 
-            "Hãy kiểm tra:" +
+            "Nếu bạn đang mở từ Zalo:" +
 
-            "<br>1. Bạn đã cấp quyền camera chưa?" +
+            "<br>" +
 
-            "<br>2. Hãy mở bằng Chrome." +
+            "➡️ Hãy chọn " +
 
-            "<br>3. Không nên mở bằng trình duyệt trong Zalo." +
+            "<b>Mở bằng Chrome</b>" +
 
-            "<br>4. Điện thoại phải cho phép trang web sử dụng camera." +
+            "<br><br>" +
+
+            "Nếu đã dùng Chrome:" +
+
+            "<br>" +
+
+            "➡️ Hãy bấm biểu tượng 🔒 trên thanh địa chỉ" +
+
+            "<br>" +
+
+            "➡️ Camera → Cho phép" +
 
             "<br><br>" +
 
             "Chi tiết: " +
+
             error.message
 
         );
@@ -585,7 +599,7 @@ function chupAnh() {
     if (!stream) {
 
         hienThiLoi(
-            "❌ Camera chưa sẵn sàng!"
+            "❌ Camera chưa được mở."
         );
 
         return;
@@ -600,7 +614,7 @@ function chupAnh() {
 
         hienThiLoi(
             "❌ Camera chưa có hình ảnh. " +
-            "Vui lòng chờ vài giây rồi thử lại."
+            "Chờ vài giây rồi thử lại."
         );
 
         return;
@@ -608,158 +622,136 @@ function chupAnh() {
     }
 
 
-    try {
-
-        /*
-        ============================================
-        TẠO CANVAS
-        ============================================
-        */
-
-        var canvas =
-            document.createElement("canvas");
+    var canvas =
+        document.createElement("canvas");
 
 
-        var width =
-            camera.videoWidth;
+    var width =
+        camera.videoWidth;
 
 
-        var height =
-            camera.videoHeight;
+    var height =
+        camera.videoHeight;
 
 
-        /*
-        ============================================
-        GIẢM KÍCH THƯỚC ẢNH
-        ĐỂ GỬI NHANH HƠN
-        ============================================
-        */
+    /*
+    ================================================
+    GIẢM KÍCH THƯỚC
+    ================================================
+    */
 
-        var maxWidth = 900;
-
-
-        if (width > maxWidth) {
-
-            height =
-                Math.round(
-                    height *
-                    maxWidth /
-                    width
-                );
-
-            width =
-                maxWidth;
-
-        }
+    var maxWidth = 900;
 
 
-        canvas.width =
-            width;
+    if (width > maxWidth) {
 
-        canvas.height =
-            height;
-
-
-        var ctx =
-            canvas.getContext("2d");
-
-
-        /*
-        ============================================
-        KHÔNG LẬT ẢNH KHI LƯU
-        ============================================
-        */
-
-        ctx.drawImage(
-
-            camera,
-
-            0,
-            0,
-
-            width,
-            height
-
-        );
-
-
-        /*
-        ============================================
-        CHUYỂN JPEG
-        ============================================
-        */
-
-        anhBase64 =
-            canvas.toDataURL(
-                "image/jpeg",
-                0.60
+        height =
+            Math.round(
+                height *
+                maxWidth /
+                width
             );
 
-
-        if (!anhBase64) {
-
-            throw new Error(
-                "Không tạo được ảnh."
-            );
-
-        }
-
-
-        /*
-        ============================================
-        HIỂN THỊ PREVIEW
-        ============================================
-        */
-
-        anhPreview.src =
-            anhBase64;
-
-
-        anhPreview.style.display =
-            "block";
-
-
-        camera.style.display =
-            "none";
-
-
-        btnChup.style.display =
-            "none";
-
-
-        btnChupLai.style.display =
-            "block";
-
-
-        btnGui.style.display =
-            "block";
-
-
-        trangThai.innerHTML =
-            "✅ Đã chụp ảnh. " +
-            "Nếu ảnh rõ, bấm XÁC NHẬN ĐIỂM DANH.";
-
-
-        /*
-        ============================================
-        DỪNG CAMERA
-        ============================================
-        */
-
-        dungCamera();
+        width =
+            maxWidth;
 
     }
 
-    catch (error) {
 
-        console.error(error);
+    canvas.width =
+        width;
+
+    canvas.height =
+        height;
+
+
+    var ctx =
+        canvas.getContext("2d");
+
+
+    /*
+    ================================================
+    LƯU ẢNH KHÔNG LẬT
+    ================================================
+    */
+
+    ctx.drawImage(
+        camera,
+        0,
+        0,
+        width,
+        height
+    );
+
+
+    /*
+    ================================================
+    JPEG
+    ================================================
+    */
+
+    anhBase64 =
+        canvas.toDataURL(
+            "image/jpeg",
+            0.60
+        );
+
+
+    if (!anhBase64) {
 
         hienThiLoi(
-            "❌ Không thể chụp ảnh: " +
-            error.message
+            "❌ Không tạo được ảnh."
         );
 
+        return;
+
     }
+
+
+    /*
+    ================================================
+    HIỂN THỊ
+    ================================================
+    */
+
+    anh.src =
+        anhBase64;
+
+
+    anh.style.display =
+        "block";
+
+
+    camera.style.display =
+        "none";
+
+
+    btnChup.style.display =
+        "none";
+
+
+    btnLai.style.display =
+        "block";
+
+
+    btnGui.style.display =
+        "block";
+
+
+    trangThai.innerHTML =
+
+        "<span class='ok'>" +
+
+        "✅ Đã chụp ảnh thành công." +
+
+        "</span>" +
+
+        "<br>" +
+
+        "Kiểm tra ảnh rồi bấm XÁC NHẬN.";
+
+
+    dungCamera();
 
 }
 
@@ -776,11 +768,7 @@ function chupLai() {
         null;
 
 
-    anhPreview.src =
-        "";
-
-
-    anhPreview.style.display =
+    anh.style.display =
         "none";
 
 
@@ -788,11 +776,7 @@ function chupLai() {
         "block";
 
 
-    btnChup.style.display =
-        "block";
-
-
-    btnChupLai.style.display =
+    btnLai.style.display =
         "none";
 
 
@@ -800,11 +784,152 @@ function chupLai() {
         "none";
 
 
+    btnChup.style.display =
+        "block";
+
+
     trangThai.innerHTML =
-        "📷 Đang mở lại camera...";
+        "📷 Camera đang hoạt động...";
 
 
     moCamera();
+
+}
+
+
+/*
+==================================================
+GỬI ẢNH
+==================================================
+*/
+
+function guiAnh() {
+
+    if (daGui) {
+        return;
+    }
+
+
+    if (!anhBase64) {
+
+        hienThiLoi(
+            "❌ Chưa có ảnh."
+        );
+
+        return;
+
+    }
+
+
+    if (!id || !token) {
+
+        hienThiLoi(
+            "❌ Thiếu mã xác thực. " +
+            "Vui lòng quét QR lại."
+        );
+
+        return;
+
+    }
+
+
+    daGui =
+        true;
+
+
+    btnGui.disabled =
+        true;
+
+    btnLai.disabled =
+        true;
+
+
+    trangThai.innerHTML =
+
+        "⏳ Đang gửi ảnh..." +
+
+        "<br>" +
+
+        "Vui lòng chờ...";
+
+
+    /*
+    ================================================
+    ĐƯA DỮ LIỆU VÀO FORM
+    ================================================
+    */
+
+    document.getElementById(
+        "inputId"
+    ).value =
+        id;
+
+
+    document.getElementById(
+        "inputToken"
+    ).value =
+        token;
+
+
+    document.getElementById(
+        "inputAnh"
+    ).value =
+        anhBase64;
+
+
+    /*
+    ================================================
+    GỬI ĐẾN APPS SCRIPT
+    ================================================
+    */
+
+    var form =
+        document.getElementById(
+            "formGui"
+        );
+
+
+    form.action =
+        SCRIPT_URL;
+
+
+    form.submit();
+
+
+    /*
+    ================================================
+    THÔNG BÁO
+    ================================================
+    */
+
+    setTimeout(function() {
+
+        trangThai.innerHTML =
+
+            "<span class='ok'>" +
+
+            "✅ Đã gửi ảnh điểm danh!" +
+
+            "<br><br>" +
+
+            "Hệ thống đang lưu ảnh vào Google Drive..." +
+
+            "<br>" +
+
+            "Vui lòng kiểm tra Google Sheet." +
+
+            "</span>";
+
+
+        btnGui.style.display =
+            "none";
+
+
+        btnLai.style.display =
+            "none";
+
+
+    }, 2500);
 
 }
 
@@ -827,6 +952,7 @@ function dungCamera() {
 
             });
 
+
         stream =
             null;
 
@@ -837,320 +963,7 @@ function dungCamera() {
 
 /*
 ==================================================
-GỬI ẢNH
-==================================================
-*/
-
-function guiAnh() {
-
-    if (daGui) {
-
-        return;
-
-    }
-
-
-    if (!anhBase64) {
-
-        hienThiLoi(
-            "❌ Chưa có ảnh!"
-        );
-
-        return;
-
-    }
-
-
-    if (!id || !token) {
-
-        hienThiLoi(
-            "❌ Thiếu thông tin xác thực!"
-        );
-
-        return;
-
-    }
-
-
-    daGui = true;
-
-
-    btnGui.disabled =
-        true;
-
-    btnChupLai.disabled =
-        true;
-
-
-    trangThai.innerHTML =
-
-        "⏳ Đang gửi ảnh..." +
-
-        "<br>" +
-
-        "Vui lòng không đóng trang.";
-
-
-    /*
-    ================================================
-    GÁN DỮ LIỆU VÀO FORM
-    ================================================
-    */
-
-    inputId.value =
-        id;
-
-
-    inputToken.value =
-        token;
-
-
-    inputAnh.value =
-        anhBase64;
-
-
-    /*
-    ================================================
-    SUBMIT FORM
-    KHÔNG DÙNG FETCH
-    => TRÁNH CORS
-    ================================================
-    */
-
-    document
-        .getElementById("formGuiAnh")
-        .action =
-        SCRIPT_URL;
-
-
-    document
-        .getElementById("formGuiAnh")
-        .submit();
-
-
-    /*
-    ================================================
-    CHỜ APPS SCRIPT GHI SHEET
-    ================================================
-    */
-
-    setTimeout(
-        kiemTraKetQua,
-        1200
-    );
-
-}
-
-
-/*
-==================================================
-KIỂM TRA KẾT QUẢ BẰNG JSONP
-==================================================
-*/
-
-function kiemTraKetQua() {
-
-    if (!id || !token) {
-
-        return;
-
-    }
-
-
-    var callbackName =
-        "kiemTra_" +
-        Date.now();
-
-
-    window[callbackName] =
-        function(result) {
-
-            console.log(
-                "Kết quả:",
-                result
-            );
-
-
-            if (
-                result.status ==
-                "DA_DIEM_DANH"
-            ) {
-
-                trangThai.innerHTML =
-
-                    "<div class='thanhCong'>" +
-
-                    "🎉 ĐIỂM DANH THÀNH CÔNG!" +
-
-                    "<br><br>" +
-
-                    "Mã đại biểu: " +
-                    id +
-
-                    "<br>" +
-
-                    "Thời gian: " +
-                    (
-                        result.thoiGian ||
-                        ""
-                    ) +
-
-                    "</div>";
-
-
-                btnGui.style.display =
-                    "none";
-
-
-                btnChupLai.style.display =
-                    "none";
-
-
-                anhPreview.style.display =
-                    "block";
-
-
-                daGui = true;
-
-
-                xoaScript(callbackName);
-
-
-                return;
-
-            }
-
-
-            if (
-                result.status ==
-                "DANG_CHO"
-            ) {
-
-                trangThai.innerHTML =
-
-                    "⏳ Đang lưu ảnh..." +
-                    "<br>" +
-                    "Vui lòng chờ...";
-
-
-                xoaScript(callbackName);
-
-
-                setTimeout(
-                    kiemTraKetQua,
-                    1000
-                );
-
-
-                return;
-
-            }
-
-
-            if (
-                result.status ==
-                "TOKEN_HET_HAN"
-            ) {
-
-                hienThiLoi(
-                    "❌ Phiên điểm danh đã hết hạn. " +
-                    "Vui lòng quét QR lại."
-                );
-
-
-                xoaScript(callbackName);
-
-                return;
-
-            }
-
-
-            if (
-                result.status ==
-                "TOKEN_KHONG_HOP_LE"
-            ) {
-
-                hienThiLoi(
-                    "❌ Mã xác thực không hợp lệ. " +
-                    "Vui lòng quét QR lại."
-                );
-
-
-                xoaScript(callbackName);
-
-                return;
-
-            }
-
-
-            xoaScript(callbackName);
-
-        };
-
-
-    var script =
-        document.createElement("script");
-
-
-    script.src =
-        SCRIPT_URL +
-        "?action=status" +
-        "&id=" +
-        encodeURIComponent(id) +
-        "&token=" +
-        encodeURIComponent(token) +
-        "&callback=" +
-        callbackName;
-
-
-    script.onerror =
-        function() {
-
-            xoaScript(
-                callbackName
-            );
-
-            /*
-            Thử lại
-            */
-
-            setTimeout(
-                kiemTraKetQua,
-                1500
-            );
-
-        };
-
-
-    document
-        .body
-        .appendChild(script);
-
-}
-
-
-/*
-==================================================
-XÓA JSONP SCRIPT
-==================================================
-*/
-
-function xoaScript(callbackName) {
-
-    try {
-
-        delete window[callbackName];
-
-    }
-    catch (e) {}
-
-
-}
-
-
-/*
-==================================================
-HIỂN THỊ LỖI
+LỖI
 ==================================================
 */
 
@@ -1169,7 +982,7 @@ function hienThiLoi(message) {
 
 /*
 ==================================================
-KHI ĐÓNG TRANG
+ĐÓNG TRANG
 ==================================================
 */
 
@@ -1183,7 +996,6 @@ window.addEventListener(
 );
 
 </script>
-
 
 </body>
 
