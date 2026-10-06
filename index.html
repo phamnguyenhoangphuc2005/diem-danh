@@ -2,231 +2,388 @@
 <html lang="vi">
 
 <head>
-    <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
 
-    <title>Camera điểm danh Hưng Long</title>
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-    <style>
+<title>Camera điểm danh Hưng Long</title>
 
-        * {
-            box-sizing: border-box;
-        }
+<style>
 
-        body {
-            margin: 0;
-            padding: 20px;
+* {
+    box-sizing: border-box;
+}
 
-            font-family: Arial, sans-serif;
+body {
 
-            background: #f2f4f7;
+    margin: 0;
 
-            text-align: center;
-        }
+    padding: 20px;
 
-        .container {
-            max-width: 500px;
+    font-family: Arial, sans-serif;
 
-            margin: auto;
+    background: #f2f4f7;
 
-            background: white;
+    text-align: center;
 
-            padding: 20px;
+}
 
-            border-radius: 20px;
+.container {
 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-        }
+    max-width: 550px;
 
-        h1 {
-            color: #1565c0;
+    margin: auto;
 
-            margin-bottom: 10px;
-        }
+    background: white;
 
-        .thongBao {
-            margin: 15px 0;
+    padding: 20px;
 
-            font-size: 17px;
+    border-radius: 20px;
 
-            color: #555;
-        }
+    box-shadow:
+        0 4px 20px rgba(0,0,0,0.15);
 
-        .cameraBox {
-            width: 100%;
+}
 
-            background: black;
+h1 {
 
-            border-radius: 15px;
+    color: #1565c0;
 
-            overflow: hidden;
+    margin-bottom: 10px;
 
-            position: relative;
-        }
+}
 
-        video {
-            width: 100%;
+#thongTin {
 
-            display: block;
+    font-size: 18px;
 
-            transform: scaleX(-1);
-        }
+    margin-bottom: 15px;
 
-        canvas {
-            display: none;
-        }
+}
 
-        button {
-            width: 100%;
+.cameraBox {
 
-            padding: 15px;
+    width: 100%;
 
-            margin-top: 15px;
+    background: black;
 
-            border: none;
+    border-radius: 15px;
 
-            border-radius: 10px;
+    overflow: hidden;
 
-            font-size: 18px;
+}
 
-            font-weight: bold;
+video {
 
-            color: white;
+    width: 100%;
 
-            background: #1565c0;
+    display: block;
 
-            cursor: pointer;
-        }
+    transform: scaleX(-1);
 
-        button:disabled {
-            background: #999;
+}
 
-            cursor: not-allowed;
-        }
+canvas {
 
-        #btnChup {
-            background: #e53935;
-        }
+    display: none;
 
-        #anhChup {
-            width: 100%;
+}
 
-            margin-top: 15px;
+button {
 
-            border-radius: 15px;
+    width: 100%;
 
-            display: none;
-        }
+    padding: 15px;
 
-        #ketQua {
-            margin-top: 15px;
+    margin-top: 15px;
 
-            font-size: 18px;
-        }
+    border: none;
 
-    </style>
+    border-radius: 10px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    color: white;
+
+    background: #e53935;
+
+}
+
+button:disabled {
+
+    background: #999;
+
+}
+
+#trangThai {
+
+    margin-top: 15px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+}
+
+.thanhCong {
+
+    color: green;
+
+}
+
+.loi {
+
+    color: red;
+
+}
+
+.loading {
+
+    color: #1565c0;
+
+}
+
+#anhDaChup {
+
+    width: 100%;
+
+    margin-top: 15px;
+
+    border-radius: 15px;
+
+    display: none;
+
+}
+
+</style>
 
 </head>
 
+
 <body>
+
 
 <div class="container">
 
-    <h1>📋 ĐIỂM DANH HỘI NGHỊ</h1>
 
-    <div class="thongBao" id="thongBao">
-        Đang mở camera...
-    </div>
+<h1>
+📋 ĐIỂM DANH HỘI NGHỊ
+</h1>
 
-    <div class="cameraBox">
 
-        <video id="camera"
-               autoplay
-               playsinline>
-        </video>
+<div id="thongTin">
 
-    </div>
+Đang kiểm tra mã đại biểu...
 
-    <canvas id="canvas"></canvas>
+</div>
 
-    <button id="btnChup" onclick="chupAnh()" disabled>
-        📸 CHỤP ẢNH
-    </button>
 
-    <img id="anhChup">
+<div class="cameraBox">
 
-    <div id="ketQua"></div>
+<video
+    id="camera"
+    autoplay
+    playsinline>
+</video>
+
+</div>
+
+
+<canvas id="canvas"></canvas>
+
+
+<button
+    id="btnChup"
+    onclick="chupAnh()"
+    disabled>
+
+📸 CHỤP ẢNH ĐIỂM DANH
+
+</button>
+
+
+<img
+    id="anhDaChup">
+
+
+<div id="trangThai">
+
+📷 Đang mở camera...
+
+</div>
+
 
 </div>
 
 
 <script>
 
-var camera = document.getElementById("camera");
 
-var canvas = document.getElementById("canvas");
+/*
+====================================================
+ CẤU HÌNH
+====================================================
+*/
 
-var btnChup = document.getElementById("btnChup");
 
-var thongBao = document.getElementById("thongBao");
+var SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbzS7bIBeGwpeKxGqGVIef9nG_dEcF-JjoqmfKl3TsCFCJqqz9mAaXADHqEbpQTnINwTGQ/exec";
 
-var anhChup = document.getElementById("anhChup");
 
-var ketQua = document.getElementById("ketQua");
+var camera =
+document.getElementById("camera");
+
+
+var canvas =
+document.getElementById("canvas");
+
+
+var btnChup =
+document.getElementById("btnChup");
+
+
+var trangThai =
+document.getElementById("trangThai");
+
+
+var thongTin =
+document.getElementById("thongTin");
+
+
+var anhDaChup =
+document.getElementById("anhDaChup");
+
 
 var stream = null;
 
 
 /*
-    MỞ CAMERA
+====================================================
+ LẤY ID TỪ URL
+====================================================
+*/
+
+var thamSo =
+new URLSearchParams(
+    window.location.search
+);
+
+
+var id =
+thamSo.get("id");
+
+
+/*
+====================================================
+ KIỂM TRA ID
+====================================================
+*/
+
+if (!id) {
+
+    thongTin.innerHTML =
+        "<span class='loi'>" +
+        "❌ Không có mã đại biểu!" +
+        "</span>";
+
+    trangThai.innerHTML = "";
+
+}
+
+else {
+
+    thongTin.innerHTML =
+        "Mã đại biểu: <b>" +
+        id +
+        "</b>";
+
+    moCamera();
+
+}
+
+
+/*
+====================================================
+ MỞ CAMERA
+====================================================
 */
 
 async function moCamera() {
 
     try {
 
-        if (!navigator.mediaDevices ||
-            !navigator.mediaDevices.getUserMedia) {
+
+        if (
+            !navigator.mediaDevices ||
+            !navigator.mediaDevices.getUserMedia
+        ) {
 
             throw new Error(
-                "Thiết bị/trình duyệt không hỗ trợ camera"
+                "Trình duyệt không hỗ trợ camera."
             );
+
         }
 
-        stream = await navigator.mediaDevices.getUserMedia({
+
+        /*
+        CAMERA TRƯỚC
+        */
+
+        stream =
+        await navigator.mediaDevices.getUserMedia({
 
             video: {
-                facingMode: "user"
+
+                facingMode: "user",
+
+                width: {
+                    ideal: 1280
+                },
+
+                height: {
+                    ideal: 720
+                }
+
             },
 
             audio: false
 
         });
 
+
         camera.srcObject = stream;
 
-        thongBao.innerHTML =
-            "✅ Camera đã được bật. Hãy nhìn vào camera.";
+
+        trangThai.innerHTML =
+            "<span class='thanhCong'>" +
+            "🟢 CAMERA ĐÃ BẬT" +
+            "</span><br>" +
+            "Vui lòng nhìn thẳng vào camera.";
+
 
         btnChup.disabled = false;
+
 
     }
 
     catch (error) {
 
+
         console.error(error);
 
-        thongBao.innerHTML =
-            "❌ Không thể truy cập camera.";
 
-        ketQua.innerHTML =
-            "<span style='color:red'>" +
-            error.name +
-            ": " +
-            error.message +
-            "</span>";
+        trangThai.innerHTML =
+            "<span class='loi'>" +
+
+            "❌ KHÔNG THỂ MỞ CAMERA" +
+
+            "</span><br><br>" +
+
+            "Hãy cấp quyền camera cho trình duyệt.";
 
     }
 
@@ -234,10 +391,13 @@ async function moCamera() {
 
 
 /*
-    CHỤP ẢNH
+====================================================
+ CHỤP ẢNH
+====================================================
 */
 
 function chupAnh() {
+
 
     if (!stream) {
 
@@ -245,58 +405,268 @@ function chupAnh() {
 
     }
 
-    canvas.width = camera.videoWidth;
 
-    canvas.height = camera.videoHeight;
+    btnChup.disabled = true;
 
-    var context = canvas.getContext("2d");
+
+    trangThai.innerHTML =
+        "<span class='loading'>" +
+        "⏳ Đang chụp ảnh..." +
+        "</span>";
+
 
     /*
-        Vì video đang lật gương,
-        ảnh chụp cũng lật lại cho đúng.
+    Kích thước ảnh
     */
 
-    context.translate(canvas.width, 0);
+    var maxWidth = 1200;
 
-    context.scale(-1, 1);
+
+    var width =
+        camera.videoWidth;
+
+
+    var height =
+        camera.videoHeight;
+
+
+    if (width > maxWidth) {
+
+        height =
+            height *
+            (maxWidth / width);
+
+        width =
+            maxWidth;
+
+    }
+
+
+    canvas.width =
+        width;
+
+    canvas.height =
+        height;
+
+
+    var context =
+        canvas.getContext("2d");
+
+
+    /*
+    Lật ảnh lại cho đúng
+    */
+
+    context.translate(
+        width,
+        0
+    );
+
+    context.scale(
+        -1,
+        1
+    );
+
 
     context.drawImage(
+
         camera,
+
         0,
+
         0,
-        canvas.width,
-        canvas.height
+
+        width,
+
+        height
+
     );
+
+
+    /*
+    Chuyển thành JPEG
+    */
 
     var anhBase64 =
         canvas.toDataURL(
             "image/jpeg",
-            0.8
+            0.7
         );
 
-    anhChup.src = anhBase64;
 
-    anhChup.style.display = "block";
+    /*
+    Hiển thị ảnh vừa chụp
+    */
 
-    ketQua.innerHTML =
-        "<span style='color:green'>" +
-        "✅ Đã chụp ảnh thành công!" +
-        "</span>";
+    anhDaChup.src =
+        anhBase64;
+
+    anhDaChup.style.display =
+        "block";
+
+
+    /*
+    Tắt camera
+    */
+
+    if (stream) {
+
+        stream
+            .getTracks()
+            .forEach(function(track) {
+
+                track.stop();
+
+            });
+
+    }
+
+
+    /*
+    GỬI ẢNH VỀ APPS SCRIPT
+    */
+
+    guiAnhVeAppsScript(
+        id,
+        anhBase64
+    );
 
 }
 
 
 /*
-    TỰ ĐỘNG MỞ CAMERA
+====================================================
+ GỬI ẢNH
+====================================================
 */
 
-window.onload = function() {
+function guiAnhVeAppsScript(
+    id,
+    anhBase64
+) {
 
-    moCamera();
 
-};
+    trangThai.innerHTML =
+        "<span class='loading'>" +
+
+        "⏳ Đang lưu ảnh và điểm danh..." +
+
+        "</span>";
+
+
+    /*
+    Dùng POST
+    */
+
+    fetch(
+        SCRIPT_URL,
+        {
+
+            method: "POST",
+
+            headers: {
+
+                "Content-Type":
+                    "application/x-www-form-urlencoded"
+
+            },
+
+            body:
+
+                "id=" +
+                encodeURIComponent(id) +
+
+                "&anh=" +
+                encodeURIComponent(anhBase64)
+
+        }
+
+    )
+
+    .then(function(response) {
+
+        return response.text();
+
+    })
+
+    .then(function(result) {
+
+
+        console.log(
+            "Kết quả Apps Script:",
+            result
+        );
+
+
+        if (
+            result.trim() == "OK"
+        ) {
+
+
+            trangThai.innerHTML =
+
+                "<span class='thanhCong'>" +
+
+                "✅ ĐIỂM DANH THÀNH CÔNG" +
+
+                "</span><br><br>" +
+
+                "Ảnh đã được lưu.";
+
+
+            btnChup.style.display =
+                "none";
+
+
+        }
+
+        else {
+
+
+            trangThai.innerHTML =
+
+                "<span class='loi'>" +
+
+                "❌ " +
+
+                result +
+
+                "</span>";
+
+
+            btnChup.disabled =
+                false;
+
+        }
+
+
+    })
+
+    .catch(function(error) {
+
+
+        console.error(error);
+
+
+        trangThai.innerHTML =
+
+            "<span class='loi'>" +
+
+            "❌ Không thể gửi ảnh về hệ thống." +
+
+            "</span>";
+
+
+        btnChup.disabled =
+            false;
+
+    });
+
+}
+
 
 </script>
+
 
 </body>
 
